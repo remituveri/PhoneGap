@@ -3,7 +3,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.soundoutthebox.example"
-        versionCode = "12" 
+        versionCode = "10" 
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->
@@ -35,13 +35,14 @@
 	<feature name="http://tizen.org/api/systeminfo" required="true"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	
-	<gap:plugin name="org.apache.cordova.network-information" />
+	<!--<gap:plugin name="org.apache.cordova.network-information" />-->
 	<!--<gap:plugin name="Device" value="org.apache.cordova.core.Device"/>
 	<gap:plugin name="NetworkStatus" value="org.apache.cordova.core.NetworkManager" />-->
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	
 	<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
 	
 </widget>
