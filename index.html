@@ -55,6 +55,8 @@
 		        elem1.style.background = '#ff00aa';	
 		        
 
+alert( checkConnection2() );
+
 				alert('Test enter');
 				var networkState = navigator.connection.type;
 		    	alert('Test after networkState');
@@ -72,6 +74,18 @@
 		        elem.innerHTML = 'Connection type: ' + states[networkState];      
 		        
 		        alert('Test end: networkState'+ states[networkState]);
+			}
+			
+			function checkConnection2(){
+			        var networkState;
+			        var test = cordova.exec(
+			                function(winParam) {networkState = winParam;},
+			                function(error) {alert("Network Manager error: "+error);},
+			                "NetworkStatus",
+			                "getConnectionInfo",
+			                []
+			        );
+			        return networkState;
 			}
 			
 		    function checkConnection() {
