@@ -34,10 +34,7 @@
 
 	<feature name="http://tizen.org/api/systeminfo" required="true"/>
 	
-	
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<gap:plugin name="org.apache.cordova.network-information" />
 	
 	<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
 	
