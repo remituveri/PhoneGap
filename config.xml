@@ -32,4 +32,7 @@
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
     -->
 
+	<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
+	<feature name="http://tizen.org/api/systeminfo" required="true"/>
+	
 </widget>
