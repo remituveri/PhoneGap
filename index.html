@@ -13,21 +13,54 @@
 		
 		<script type="text/javascript" charset="utf-8">
 		
+			var timecode = 0;
+			var lastTimecodeUpdate = null;
+			
 			// Wait for PhoneGap to load
 		    // 
-		    document.addEventListener("deviceready", onDeviceReady, false);
+		    function onLoad() {
+		    	document.addEventListener("deviceready", onDeviceReady, false);
+		    }
 		
 		    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 		    //
 		    function onDeviceReady() {
-		    	document.addEventListener("online", checkConnection,  false); 
-		    	document.addEventListener("offline", checkConnection,  false); 
+		    	document.addEventListener("online", onOnline,  false); 
+		    	document.addEventListener("offline", onOffline,  false); 
 		    	/*var connCheck =*/ setInterval(function() { 
-		    		checkConnection();  }, 1000);	        
+		    		checkConnection();  }, 1000);	  
+		    	document.addEventListener("volumeupbutton", onVolumeUpKeyDown, false);    
+		    	document.addEventListener("searchbutton", onVolumeUpKeyDown, false); 
+		    	
+		    	setInterval(function() { 
+		    		test();  }, 5000);	
+		    		
+		    	setInterval(function() { 
+		    		updateTimecode();  }, 10);	   
+		    	 
 		    }
+		    
+		    function onOnline() {
+		    	alert("onOnline");
+		    	checkConnection();
+			}
 		
+			function onOffline() {
+		    	alert("onOffline");
+		    	checkConnection();
+			}
+			
+			function onVolumeUpKeyDown() {	        
+		        var elem1 = document.getElementById("page1");
+		        elem1.style.background = '#ff00aa';	
+		        //loadTweets();	 
+		        //test();       
+			}
+			
 		    function checkConnection() {
-		        var networkState = navigator.network.connection.type;
+		    	var networkState = navigator.connection.type;
+		    	//var networkState = (debugMode) ? navigator.network.connection.type : navigator.connection.type;
+		        //var networkState = navigator.network.connection.type;
 		
 		        var states = {};
 		        states[Connection.UNKNOWN]  = 'Unknown connection';
@@ -42,13 +75,117 @@
 		        var elem = document.getElementById("para1");
 		        elem.innerHTML = 'Connection type: ' + states[networkState];
 		    }
+		    
+		    $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+			    if ( options.onreadystatechange ) {
+			        var xhrFactory = options.xhr;
+			        options.xhr = function() {
+			            var xhr = xhrFactory.apply( this, arguments );
+			            function handler() {
+			                options.onreadystatechange( xhr, jqXHR );
+			            }
+			            if ( xhr.addEventListener ) {
+			                xhr.addEventListener( "readystatechange", handler, false );
+			            } else {
+			                setTimeout( function() {
+			                    var internal = xhr.onreadystatechange;
+			                    if ( internal ) {
+			                        xhr.onreadystatechange = function() {
+			                            handler();
+			                            internal.apply( this, arguments ); 
+			                        };
+			                    }
+			                }, 0 );
+			            }
+			            return xhr;
+			        };
+			    }
+			});
+		    
+		    function test() {
+		    	var start = null;
+				var xhr = $.ajax({
+				   url: "http://www.soundoutthebox.com/test.php",
+				   complete: function( data ) {
+				      var end = new Date().getTime();
+				      var requestTime = end - start;
+				      console.log(requestTime);
+				      
+				      var json = data.responseText;
+    				  var obj = JSON && JSON.parse(json) || $.parseJSON(json);
+				      var server = obj.server;
+				      
+				      timecode = (server.timecode - requestTime);
+				      lastTimecodeUpdate = new Date();
+				      
+				      var elem = document.getElementById("para2");
+		        	  elem.innerHTML = 'sync: ' + timecode;
+				   },
+				   onreadystatechange: function(xhr) {
+				      if(xhr.readyState == 3 && start == null) {
+				         start = new Date().getTime();
+				      }
+				   }
+				});
+		    }
+		    
+		    function pad(d) {
+			    return (d < 10) ? '0' + d.toString() : d.toString();
+			}
+		    
+		    function updateTimecode() {
+		    	if( ( timecode !== 0 ) && ( lastTimecodeUpdate !== null ) ) {
+		    		
+		    		var current = new Date();
+		    		var delta = current.getTime() - lastTimecodeUpdate.getTime(); 
+		    		
+		    		var date = new Date(timecode + delta);
+		    		var time = pad( date.getUTCHours() ) + ':' + pad( date.getUTCMinutes() ) + ':' + pad( date.getUTCSeconds() ) + '/' + pad( Math.floor( date.getUTCMilliseconds() / 10 ) );
+
+			    	var elem = document.getElementById("para3");
+			        elem.innerHTML = 'timecode: ' + time; //date.toString();
+		        }
+		    }
+		    
+		    function loadTweets() {
+		    	
+		    	// we have to set a default timeout for each ajax commands (Get/Post)
+				// otherwise, the webpanel can stay blocked and don't ask an auto-reconnection
+				$.ajaxSetup({ timeout: 8000 });
+		    	
+		    	var currentDate = new Date();
+		    	var currentTime = currentDate.getTime();
+		    	
+		    	
+		    	$.ajax({
+					type: "GET",
+					url: "http://www.soundoutthebox.com/test.php?&txTime=" + currentTime,
+					//timeout: 2500,
+					cache:  false
+				})
+				.success( function(data) {
+					var obj = JSON.parse(data);
+					/*var currentDate = new Date();
+		    		var currentTime = currentDate.getTime();
+					var rxTime = currentTime;
+					
+					obj.txTime
+					
+					obj.serverTime
+					var timecode = obj.rxTime*/
+				})
+				.error( function() {
+				});
+		    	
+			    
+			}
 			
 		</script>
 		
 		
 		
 	</head>
-	<body>
+	<body  onload="onLoad()">
 		<!-- Start of first page I -->
 		<div data-role="page" id="page1">
 			<!-- Header -->
@@ -60,10 +197,14 @@
 			<!-- Content    -->
 			<div data-role="content">
 				<h3>Content</h3>
-				<p>
+				<p id="para2">
+					Blah blah blah blah
+				</p>
+				<p id="para3">
 					Blah blah blah blah
 				</p>
 				<p id="para1">Un peu de texte.</p>
+				<div id="latestTweets"></div>
 			</div>
 			<!-- /content -->
 			<!-- footer -->
