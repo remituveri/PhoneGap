@@ -159,39 +159,7 @@
 			        elem.innerHTML = 'timecode: ' + time; //date.toString();
 		        }
 		    }
-		    
-		    function loadTweets() {
-		    	
-		    	// we have to set a default timeout for each ajax commands (Get/Post)
-				// otherwise, the webpanel can stay blocked and don't ask an auto-reconnection
-				$.ajaxSetup({ timeout: 8000 });
-		    	
-		    	var currentDate = new Date();
-		    	var currentTime = currentDate.getTime();
-		    	
-		    	
-		    	$.ajax({
-					type: "GET",
-					url: "http://www.soundoutthebox.com/test.php?&txTime=" + currentTime,
-					//timeout: 2500,
-					cache:  false
-				})
-				.success( function(data) {
-					var obj = JSON.parse(data);
-					/*var currentDate = new Date();
-		    		var currentTime = currentDate.getTime();
-					var rxTime = currentTime;
-					
-					obj.txTime
-					
-					obj.serverTime
-					var timecode = obj.rxTime*/
-				})
-				.error( function() {
-				});
-		    	
-			    
-			}
+
 			
 		</script>
 		
