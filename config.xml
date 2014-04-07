@@ -23,6 +23,7 @@
     
     <icon src="icon.png" />
 
+	<preference name="fullscreen" value="true" />
 
 	<gap:splash src="splash.png" />
 
