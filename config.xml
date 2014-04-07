@@ -24,13 +24,6 @@
     <icon src="icon.png" />
 
 	<preference name="fullscreen" value="true" />
-	<feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="ios-package" value="CDVSplashScreen" />
- 	</feature>
-	<preference name="AutoHideSplashScreen" value="false" />
-
-	<gap:splash src="splash.png" />
 
 	<access origin="*"/> <!-- allow local pages -->
     <!--
@@ -41,9 +34,7 @@
 	<feature name="http://tizen.org/api/systeminfo" required="true"/>
 	
 	<gap:plugin name="org.apache.cordova.network-information" />
-	<gap:plugin name="org.apache.cordova.splashscreen" />
 	
 	<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
-	<plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
 	
 </widget>

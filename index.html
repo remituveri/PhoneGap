@@ -38,8 +38,6 @@
 		    		
 		    	setInterval(function() { 
 		    		updateTimecode();  }, 10);	   
-		    	 
-		    	 navigator.splashscreen.hide();
 		    }
 		    
 		    function onOnline() {
@@ -171,8 +169,7 @@
 		<div data-role="page" id="page1">
 			<!-- Header -->
 			<div data-role="header">
-				<h1>Phonegap Template &amp;</h1>
-
+				<h1>Light SOTB</h1>
 			</div>
 			<!-- /header -->
 			<!-- Content    -->
@@ -187,11 +184,14 @@
 				<p id="para1">Un peu de texte.</p>
 				<div id="latestTweets"></div>
 			</div>
+			
+			<input type="button" value="Demo" id="btn-demo" onclick="btnDemoClick()" />
+			<input type="button" value="Event" id="btn-event" onclick="btnEventClick()" />
 			<!-- /content -->
 			<!-- footer -->
-			<div data-role="footer">
+			<!-- <div data-role="footer">
 				<h4>&copy; 2013 Your Name</h4>
-			</div>
+			</div>-->
 			<!-- /footer -->
 		</div>
 		<!-- /page -->
