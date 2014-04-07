@@ -104,5 +104,6 @@
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
 		<plugin name="Device" value="org.apache.cordova.Device" />
+		<plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     </plugins>
 </widget>
