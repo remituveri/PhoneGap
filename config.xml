@@ -24,6 +24,7 @@
     <icon src="icon.png" />
 
 	<preference name="fullscreen" value="true" />
+	<preference name="AutoHideSplashScreen" value="false" />
 
 	<gap:splash src="splash.png" />
 

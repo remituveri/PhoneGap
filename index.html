@@ -25,6 +25,9 @@
 		    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
 		    //
 		    function onDeviceReady() {
+		    	
+		    	navigator.splashscreen.hide();
+		    	
 		    	document.addEventListener("online", onOnline,  false); 
 		    	document.addEventListener("offline", onOffline,  false); 
 		    	/*var connCheck =*/ setInterval(function() { 
@@ -53,27 +56,7 @@
 			function onVolumeUpKeyDown() {	        
 		        var elem1 = document.getElementById("page1");
 		        elem1.style.background = '#ff00aa';	
-		        
-
-alert( checkConnection2() );
-
-				alert('Test enter');
-				var networkState = navigator.connection.type;
-		    	alert('Test after networkState');
-		        var states = {};
-		        states[Connection.UNKNOWN]  = 'Unknown connection';
-		        states[Connection.ETHERNET] = 'Ethernet connection';
-		        states[Connection.WIFI]     = 'WiFi connection';
-		        states[Connection.CELL_2G]  = 'Cell 2G connection';
-		        states[Connection.CELL_3G]  = 'Cell 3G connection';
-		        states[Connection.CELL_4G]  = 'Cell 4G connection';
-		        states[Connection.NONE]     = 'No network connection';
-		
-		        //alert('Connection type: ' + states[networkState]);
-		        var elem = document.getElementById("para1");
-		        elem.innerHTML = 'Connection type: ' + states[networkState];      
-		        
-		        alert('Test end: networkState'+ states[networkState]);
+				alert( checkConnection2() );
 			}
 			
 			function checkConnection2(){
