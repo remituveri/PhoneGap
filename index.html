@@ -26,8 +26,6 @@
 		    //
 		    function onDeviceReady() {
 		    	
-		    	navigator.splashscreen.hide();
-		    	
 		    	document.addEventListener("online", onOnline,  false); 
 		    	document.addEventListener("offline", onOffline,  false); 
 		    	/*var connCheck =*/ setInterval(function() { 
@@ -41,6 +39,7 @@
 		    	setInterval(function() { 
 		    		updateTimecode();  }, 10);	   
 		    	 
+		    	 navigator.splashscreen.hide();
 		    }
 		    
 		    function onOnline() {
