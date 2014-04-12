@@ -1,0 +1,101 @@
+.ui-content, .ui-page{
+	background: #121212;
+}
+
+.ui-content {
+	padding: 0;
+	overflow: hidden;
+}
+
+
+.ui-header.ui-bar-inherit {
+	background-color: #121212;
+	border-width: 0;
+	position: relative;
+	font-size: 1.4em;
+	color: #ffffff;
+	text-shadow: 0 1px 0 #333333;
+}
+
+.divMenu{
+    /*position: absolute !important;
+    bottom: 0;
+	left: 0;*/
+    width: 100%;
+}
+
+.ui-link.ui-btn {
+	margin-right: 8%;
+	margin-left: 8%;
+	border-radius: 8px;
+}
+
+.btn, .btn:hover {
+box-shadow: 0px -2px 0px rgba(0, 0, 0, 0.15) inset;
+}
+
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
+	color: #f7f7f7;
+	background-color: #32688f;
+	border-color: #2b5a7c;
+	text-shadow: none;
+}
+
+.ui-page-theme-a .ui-btn{	
+	color: #f7f7f7;
+	background-color: #32688f;
+	border-color: #2b5a7c;
+	text-shadow: none;
+}
+
+.ui-page-theme-a .ui-btn:hover{
+	/*background-color: #ededed;
+	border-color: #ddd;
+	//color: #333;
+	text-shadow: 0 1px 0 #f3f3f3;*/
+
+	color: #f7f7f7;
+	background-color: #275271;
+	border-color: #1c394f;
+	text-decoration: none;
+	/*
+	background-color: #333333;
+	//border-color: #ddd;
+	color: #f3f3f3;
+	text-shadow: 0 1px 0 #151515;*/
+}
+
+.logoContainer{
+	/*position: absolute;
+	top: 50%;
+	margin-top: -75px;
+	left: 50%;
+	margin-left: -75px;
+	display:block;*/
+	//float:left;
+	//background-image:url(../img/PasDePhoto.jpg);
+	background-repeat:no-repeat;
+	height:120px;
+	width:120px;
+	overflow:hidden;
+	margin: auto;
+}
+
+div.logoBackground{
+	background-color: #60A7FF;
+	//height:78%;
+	//margin-left: auto;
+	//margin-right: auto;
+	width:78%;
+}
+
+#logoSOTB{
+background-color: #D6D62E;
+	height:100%;
+	width:100%;
+}
+
+table.fullsize{
+	height:100%;
+	width:100%;
+}
